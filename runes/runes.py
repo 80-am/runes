@@ -20,11 +20,19 @@ class Runes():
         print(l.read())
 
     ticker = input("Ticker to download: ").upper()
+
     today = datetime.now(timezone.utc)
     from_date = get_years_ago(today, 10)
     to_date = get_epoch_timestamp(today)
 
-    frequency = "1d" # 1d, 1wk, 1mo
+    print('\n1) Daily\n2) Weekly \n3) Monthly')
+    frequency = input('Frequency of data: ')
+    if frequency.lower() in ('1' or 'daily' or '1d'):
+        frequency = '1d'
+    elif frequency.lower() in ('2' or 'weekly' or '1wk'):
+        frequency = '1wk'
+    else:
+        frequency = '1mo'
 
     CSV_URL = f'https://query1.finance.yahoo.com/v7/finance/download/{ticker}?period1={from_date}&period2={to_date}&interval={frequency}&events=history&includeAdjustedClose=true'
     response = urllib.request.urlopen(CSV_URL)
