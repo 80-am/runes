@@ -16,16 +16,16 @@ def get_years_ago(now, years):
 
 
 class Runes():
-    ticker = "TSLA"
+    with open('runes/assets/logo', 'r') as l:
+        print(l.read())
 
+    ticker = input("Ticker to download: ").upper()
     today = datetime.now(timezone.utc)
     from_date = get_years_ago(today, 10)
     to_date = get_epoch_timestamp(today)
-    print(from_date)
-    print(to_date)
 
     frequency = "1d" # 1d, 1wk, 1mo
 
     CSV_URL = f'https://query1.finance.yahoo.com/v7/finance/download/{ticker}?period1={from_date}&period2={to_date}&interval={frequency}&events=history&includeAdjustedClose=true'
     response = urllib.request.urlopen(CSV_URL)
-    pd.read_csv(response).to_csv(f'{ticker}.csv', sep='\t', encoding='utf-8')
+    pd.read_csv(response).to_csv(f'downloads/{ticker}.csv', sep='\t', encoding='utf-8')
