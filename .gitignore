@@ -1,4 +1,3 @@
 *.csv
 config.py
-config.py.sample
 __pycache__

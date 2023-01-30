@@ -8,7 +8,7 @@ Historical stock data written in stone.
 Copy [runes/config.py.sample](runes/config.py.sample) into runes/config.py and fill in missing configs.
 
 ```py
-DOWNLOADS_LOCATION = "/home/elon/repos/runes/downloads/"
+DOWNLOADS_LOCATION = "/path/to/download/cvs/"
 ```
 
 Install dependencies with pip.
