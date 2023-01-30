@@ -3,10 +3,12 @@ from datetime import datetime
 from datetime import timezone
 from dateutil.relativedelta import relativedelta
 
+import config
 import requests
 import urllib
 import pandas as pd
 
+DOWNLOADS_LOCATION = config.DOWNLOADS_LOCATION
 
 def get_epoch_timestamp(date):
     return str(date.replace(hour = 0, minute = 0, second = 0, microsecond = 0).timestamp()).split('.', 1)[0]
@@ -16,8 +18,13 @@ def get_years_ago(now, years):
 
 
 class Runes():
-    with open('runes/assets/logo', 'r') as l:
-        print(l.read())
+    print(
+""" ____  _   _ _   _ _____ ____  
+|  _ \| | | | \ | | ____/ ___| 
+| |_) | | | |  \| |  _| \___ \ 
+|  _ <| |_| | |\  | |___ ___) |
+|_| \_\\\___/|_| \_|_____|____/ 
+""")
 
     ticker = input("Ticker to download: ").upper()
 
@@ -36,4 +43,4 @@ class Runes():
 
     CSV_URL = f'https://query1.finance.yahoo.com/v7/finance/download/{ticker}?period1={from_date}&period2={to_date}&interval={frequency}&events=history&includeAdjustedClose=true'
     response = urllib.request.urlopen(CSV_URL)
-    pd.read_csv(response).to_csv(f'downloads/{ticker}.csv', sep='\t', encoding='utf-8')
+    pd.read_csv(response).to_csv(f'{DOWNLOADS_LOCATION}{ticker}-{from_date}-{to_date}.csv', sep='\t', encoding='utf-8')
