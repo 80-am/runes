@@ -15,3 +15,6 @@ Install dependencies with pip.
 ```bash
 pip install -r requirements.txt
 ```
+
+## Running Runes
+Run `runes.py` and select your ticker (i.e AMD), time period (i.e 3 months) and frequency of data (i.e daily).
